@@ -51,7 +51,7 @@ Explanations for developers about the env values:
 
 [Some JDBot Explanations](https://gist.github.com/JDJGInc/5607b3f63f651d2232a25b305aea4d33)
 
-[Main/Bot Support Guild](https://discord.gg/sHUQCch)
+[Main/Bot Support Guild](https://discord.gg/Y25PGjsXt2)
 
 [Bot and Developer Guild](https://discord.gg/Bdj8ZyZCQ2)
 
