@@ -139,8 +139,8 @@ class Order(commands.Cog):
   async def tenor(self, ctx, *, args = None):
 
     if not args:
-      return await ctx.send("You can't search for nothing")
       ctx.command.reset_cooldown(ctx)
+      return await ctx.send("You can't search for nothing")
 
     safesearch_type = ContentFilter.high()
     results = await self.tenor_client.search(args, content_filter = safesearch_type, limit = 10)
@@ -219,8 +219,8 @@ class Order(commands.Cog):
   async def giphy(self, ctx, *, args = None):
     
     if not args:
-      return await ctx.send("That doesn't have any value.")
       ctx.command.reset_cooldown(ctx) 
+      return await ctx.send("That doesn't have any value.")
 
     safesearch_type = AgeRating.g()
     results = await self.giphy_client.search(args, rating = safesearch_type, limit = 10)
