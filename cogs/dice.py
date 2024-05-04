@@ -106,7 +106,7 @@ class Dice(commands.Cog):
     embed = discord.Embed(title="coin flip", color=random.randint(0, 16777215))
     embed.set_author(name = f"{ctx.author}", icon_url = ctx.author.display_avatar.url)
 
-    embed.add_field(name = f"The Coin Flipped:", value = f"{pic_name}")
+    embed.add_field(name = "The Coin Flipped:", value = f"{pic_name}")
     embed.add_field(name = "You guessed:", value = f"{view.value}")
     embed.set_image(url = url_dic[pic_name])
 
@@ -183,16 +183,16 @@ class Dice(commands.Cog):
     deciding = random.randint(1, 3)
     number_to_text = {1 : "Rock", 2 : "Paper", 3 : "Scissors"}
 
-    embed = discord.Embed(title = f"RPS Game",color = random.randint(0, 16777215), timestamp =(ctx.message.created_at))
+    embed = discord.Embed(title = "RPS Game",color = random.randint(0, 16777215), timestamp=ctx.message.created_at)
 
     if view.value == deciding:
-      embed.set_author(name = f"Tie!",icon_url = ctx.author.display_avatar.url)
+      embed.set_author(name = "Tie!",icon_url = ctx.author.display_avatar.url)
 
     if view.value == 1 and deciding == 3 or view.value == 2 and deciding == 1 or view.value == 3 and deciding == 2:
-      embed.set_author(name = f"You Won!",icon_url = ctx.author.display_avatar.url)
+      embed.set_author(name = "You Won!",icon_url = ctx.author.display_avatar.url)
 
     if view.value == 3 and deciding == 1 or view.value == 1 and deciding == 2 or view.value == 2 and deciding == 3:
-      embed.set_author(name = f"You lost!",icon_url = ctx.author.display_avatar.url)
+      embed.set_author(name = "You lost!",icon_url = ctx.author.display_avatar.url)
 
     embed.set_footer(text = f"{ctx.author.id}")
 

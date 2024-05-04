@@ -8,6 +8,7 @@ class Extra(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
     bot.loop.create_task(self.__ainit__())
+    self.api_text = "Powered by JDJG Api!"
 
   async def __ainit__(self):
     await self.bot.wait_until_ready()
@@ -62,9 +63,9 @@ class Extra(commands.Cog):
   async def reverse(self,ctx,*,args=None):
     if args:
 
-      reversed = args[::-1]
+      reversed_text = args[::-1]
 
-      await ctx.send(content = f"{reversed}", allowed_mentions=discord.AllowedMentions.none())
+      await ctx.send(content = f"{reversed_text}", allowed_mentions=discord.AllowedMentions.none())
       
     if args is None:
       await ctx.send("Try sending actual to reverse")
@@ -117,11 +118,12 @@ class Extra(commands.Cog):
     res = await r.json()
     embed = discord.Embed(title = "Here is some advice for you!",color=random.randint(0, 16777215))
     embed.add_field(name = f"{res['text']}", value = "Hopefully this helped!")
-    embed.set_footer(text="Powered by JDJG Api!")
+    embed.set_footer(text=self.api_text)
     try:
       await ctx.send(embed=embed)
     except:
       await ctx.send("was too long...")
+      # it wants me to re-raise it why? -> gitroll.io
 
   @commands.command(help="gives random compliment")
   async def compliment(self, ctx):
@@ -129,7 +131,7 @@ class Extra(commands.Cog):
     res = await r.json()
     embed = discord.Embed(title = "Here is a compliment:",color=random.randint(0, 16777215))
     embed.add_field(name = f"{res['text']}", value = "Hopefully this helped your day!")
-    embed.set_footer(text="Powered by JDJG Api!")
+    embed.set_footer(text=self.api_text)
     await ctx.send(embed=embed)
 
   @commands.command(help="gives an insult")
@@ -138,7 +140,7 @@ class Extra(commands.Cog):
     res = await r.json()
     embed = discord.Embed(title = "Here is a insult:",color=random.randint(0, 16777215))
     embed.add_field(name = f"{res['text']}", value = "Hopefully this Helped?")
-    embed.set_footer(text="Powered by JDJG Api!")
+    embed.set_footer(text=self.api_text)
     await ctx.send(embed=embed)
 
   @commands.command(help="gives response to slur")
@@ -147,7 +149,7 @@ class Extra(commands.Cog):
     res = await r.json()
     embed = discord.Embed(title = "Don't Swear",color=random.randint(0, 16777215))
     embed.add_field(name = f"{res['text']}", value = "WHY MUST YOU SWEAR?")
-    embed.set_footer(text="Powered by JDJG Api!")
+    embed.set_footer(text=self.api_text)
     await ctx.send(embed=embed)
 
   @commands.command(help="gives random message",aliases=["rm"])
@@ -156,7 +158,7 @@ class Extra(commands.Cog):
     res = await r.json()
     embed = discord.Embed(title = "Random Message:",color=random.randint(0, 16777215))
     embed.add_field(name="Here:",value=res["text"])
-    embed.set_footer(text="Powered by JDJG Api!")
+    embed.set_footer(text=self.api_text)
     await ctx.send(embed=embed)
 
   @commands.command(help="a command to talk to Google TTS",brief="using the power of the asyncgtts module you can now do tts")
@@ -253,7 +255,8 @@ class Extra(commands.Cog):
     
     bot_member = channel.me if isinstance(channel, discord.DMChannel) else channel.guild.me
       
-    if channel.permissions_for(bot_member).send_messages or not channel.id == ctx.channel.id:
+    if channel.permissions_for(bot_member).send_messages or channel.id != ctx.channel.id:
+      # used to be or not channel.id == ctx.channel.id
 
       if isinstance(bot_member, discord.Member):
 
@@ -339,7 +342,7 @@ class Extra(commands.Cog):
     embed=discord.Embed(title=f"{response_dict['joke']}",color=random.randint(0, 16777215))
     embed.set_author(name=f"{response_dict['category']} Joke:")
     embed.add_field(name="Language:",value=f"{response_dict['lang']}")
-    embed.add_field(name=f"Joke ID:",value=f"{response_dict['id']}")
+    embed.add_field(name="Joke ID:",value=f"{response_dict['id']}")
     embed.add_field(name="Type:",value=f"{response_dict['type']}")
     embed.set_footer(text=f"Joke Requested By {ctx.author} \nPowered by jokeapi.dev")
     await ctx.send(embed=embed)
@@ -424,6 +427,7 @@ class Extra(commands.Cog):
     try:
       paste = await utils.post(self.bot, page)
     except:
+      # tracebrack print exeception later.
       return await ctx.send("failed posting back of messages")
 
     await ctx.author.send(content=f"Added text file to Senarc Bin: \n{paste}")
@@ -488,7 +492,7 @@ class Extra(commands.Cog):
     
     num = numbers[-1]
 
-    embed = discord.Embed(title = f"Result of the function",color=random.randint(0, 16777215))
+    embed = discord.Embed(title = "Result of the function",color=random.randint(0, 16777215))
     embed.add_field(name = f"Formula: {num} ^ {root}", value = f"Result: {(num**root)}")
     embed.set_footer(text = f"{ctx.author.id}")
     embed.set_thumbnail(url="https://i.imgur.com/E7GIyu6.png")
@@ -523,6 +527,7 @@ class Extra(commands.Cog):
             await msg.reply(res.text, mention_author=False, allowed_mentions=discord.AllowedMentions.none())
 
     return
+    # gitroll calls this unnecessary but idk.
 
   @commands.command(brief = "a command to create a voice channel")
   async def voice_create(self, ctx, *, args = None):
@@ -604,7 +609,7 @@ class Extra(commands.Cog):
       number_each_time = numbers[1]
       times_ran = numbers[-1]
 
-      embed = discord.Embed(title = f"Result of the function",color = random.randint(0, 16777215))
+      embed = discord.Embed(title = "Result of the function",color = random.randint(0, 16777215))
 
       embed.add_field(name=f"Formula: {orginal} + {number_each_time} * ( {times_ran} - 1 )",value = f"Result: {orginal+number_each_time*(times_ran-1)}")
 
@@ -654,7 +659,7 @@ class Extra(commands.Cog):
 
   @commands.command(brief = "says nook nook and shows an image")
   async def pingu(self, ctx):
-    embed = discord.Embed(description = f"nook nook", color = random.randint(0, 16777215))
+    embed = discord.Embed(description = "nook nook", color = random.randint(0, 16777215))
     embed.set_image(url = "https://i.imgur.com/Z6NURwi.gif")
     embed.set_author(name = f"Pingu has been summoned by {ctx.author}:", icon_url = ctx.author.display_avatar.url)
     await ctx.send("nook nook", embed = embed)
@@ -674,7 +679,7 @@ class Extra(commands.Cog):
   
   @commands.command(brief = "brings up two sites of logical fallicies")
   async def fallacies_list(self, ctx):
-    await ctx.send(f"https://www.futurelearn.com/info/courses/logical-and-critical-thinking/0/steps/9131 \nhttps://yourlogicalfallacyis.com/")
+    await ctx.send("https://www.futurelearn.com/info/courses/logical-and-critical-thinking/0/steps/9131 \nhttps://yourlogicalfallacyis.com/")
 
   @commands.command(brief = "based on pog bot's nitro command")
   async def nitro(self, ctx):
@@ -699,7 +704,7 @@ class Extra(commands.Cog):
       return await ctx.send("Couldn't find the first message or any message :shrug: Not sure why")
 
     embed = discord.Embed(color = random.randint(0, 16777215), timestamp = ctx.message.created_at, description = f"Click on [message link]({messages[0].jump_url}) to see the channel listed below's first message")
-    embed.add_field(name = f"Channel:", value = f"{channel.mention}")
+    embed.add_field(name = "Channel:", value = f"{channel.mention}")
     embed.set_author(name = f"Message Author: {messages[0].author}", icon_url = f"{messages[0].author.display_avatar.url}")
 
     await ctx.send(content = "here's the first message in that channel", embed = embed)
@@ -709,13 +714,13 @@ class Extra(commands.Cog):
   async def urban(self, ctx, *, search: commands.clean_content = None):
     
     if search is None:
-      return await ctx.send(f"Specify what you need to be searched in the urban dictionary.")
+      return await ctx.send("Specify what you need to be searched in the urban dictionary.")
 
     try: 
       response = await self.bot.session.get(f"https://api.urbandictionary.com/v0/define?term={search}", headers = {"Accept": "application/json"})
 
     except Exception:
-      return await ctx.send(f"Urban API returned invalid data.")
+      return await ctx.send("Urban API returned invalid data.")
 
     url = await response.json()
 
@@ -723,7 +728,7 @@ class Extra(commands.Cog):
       return await ctx.send(":fire: an Error has occured.")
     
     if not len(url['list']):
-      return await ctx.send(f"Couldn't find your search in the dictionary.")
+      return await ctx.send("Couldn't find your search in the dictionary.")
 
     result = sorted(url['list'], reverse=True, key=lambda g: int(g["thumbs_up"]))[0]
     definition = result['definition']
@@ -768,6 +773,7 @@ class Extra(commands.Cog):
     await view.wait()
 
     subreddit =  await self.bot.db.fetchrow("SELECT * FROM SUBREDDITS WHERE name = $1", view.value)
+    # handle weird call better ie use the value given rather than something else as it uses the selectdown.
 
     subreddit_name = subreddit.get("name")
 

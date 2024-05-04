@@ -38,7 +38,7 @@ class Bot(commands.Cog):
 
     embed.add_field(name = "Websocket Response time:", value = f"{round(self.bot.latency*1000)} MS", inline = False)
 
-    await message.edit(content = f"Pong", embed = embed)
+    await message.edit(content = "Pong", embed = embed)
   
   @commands.command(brief="gives you an invite to invite the bot.", aliases = ["inv"])
   async def invite(self, ctx):
@@ -53,7 +53,7 @@ class Bot(commands.Cog):
     embed.add_field(name = "Minimial permisions", value = f"{ minimial_invite}")
 
     embed.set_thumbnail(url = self.bot.user.display_avatar.url)
-    embed.set_footer(text = f"not all features may work if you invite with minimal perms, if you invite with 0 make sure these permissions are in a Bots/Bot role.")
+    embed.set_footer(text = "not all features may work if you invite with minimal perms, if you invite with 0 make sure these permissions are in a Bots/Bot role.")
 
     view = discord.ui.View()
     
@@ -166,7 +166,7 @@ class Bot(commands.Cog):
     embed.add_field(name="Command Count:",value=f"{len(self.bot.commands)}")
     embed.add_field(name = "Usable Command Count:", value=f"{len(await utils.filter_commands(ctx, self.bot.commands))}")
     embed.add_field(name = "Approximate Member Count:", value = f"{sum(g.member_count for g in self.bot.guilds)}")
-    embed.set_footer(text = f"if you at all don't get what this means, you can ask our support team, if you do understand you can ask for clarification")
+    embed.set_footer(text = "if you at all don't get what this means, you can ask our support team, if you do understand you can ask for clarification")
     await ctx.send(embed = embed)
   
   @commands.command(brief = "finds out where the location of the command on my github repo(so people can learn from my commands)")
@@ -255,8 +255,8 @@ class Bot(commands.Cog):
   async def support_invite(self, ctx):
     
     view = discord.ui.View()
-    view.add_item(discord.ui.Button(label = f"Support Guild Invite", url = "https://discord.gg/sHUQCch", style = discord.ButtonStyle.link, row = 1))
-    await ctx.send("If you press the button you will be invited to our guild :D, you can also manually use discord.gg/sHUQCch", view = view)
+    view.add_item(discord.ui.Button(label = "Support Guild Invite", url = "https://discord.gg/Y25PGjsXt2h", style = discord.ButtonStyle.link, row = 1))
+    await ctx.send("If you press the button you will be invited to our guild :D, you can also manually use https://discord.gg/Y25PGjsXt2", view = view)
 
   @commands.command(brief="This command gives you an alt bot to use",aliases=["alt_invite", "alt_bot"])
   async def verify_issue(self, ctx):
@@ -301,7 +301,7 @@ class Bot(commands.Cog):
       return await ctx.reply("You let me time out :(")
 
     if view.value is True:
-      message = await ctx.send(content=f'Summoning JDJG now a.k.a the Bot Owner to the guild make sure invite permissions are open!')
+      message = await ctx.send(content="Summoning JDJG now a.k.a the Bot Owner to the guild make sure invite permissions are open!")
       await msg.delete()
 
       if isinstance(ctx.channel, discord.threads.Thread):
@@ -339,7 +339,7 @@ class Bot(commands.Cog):
         return await message.edit(content = "This is meant for guilds not Dm channel if you want support in DM channel contact the owner, By DMS at JDJG Inc. Official#3493.")
 
     if view.value is False:
-      await ctx.send(content = f" You didn't agree to summoning me. So I will not be invited.")
+      await ctx.send(content = "You didn't agree to summoning me. So I will not be invited.")
       await msg.delete()
 
   @commands.command(brief = "this command tells you to how to report ex issues to owner")
@@ -502,6 +502,8 @@ class Bot(commands.Cog):
         already_exists = True
 
       if not emoji.id in [e.id for e in self.bot.emojis]:
+        # unsure why it flags in https://gitroll.io/result/repo/z7nupkf1YUdMJPGFgQx9
+
         await ctx.send("The emoji is now in the bot's emoji review channel")
       
       embed = discord.Embed(title = "Emoji Submission", color = 5565960)
