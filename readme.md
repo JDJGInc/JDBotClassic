@@ -53,7 +53,7 @@ Explanations for developers about the env values:
 
 [Main/Bot Support Guild](https://discord.gg/Y25PGjsXt2)
 
-[Bot and Developer Guild](https://discord.gg/Bdj8ZyZCQ2)
+[Bot and Developer Guild](https://discord.gg/9gurZy6Kdb)
 
 Want A webhook github of this?
 You can just DM me on Discord, and I will hook up your webhook to my github, so you will get updates too :D

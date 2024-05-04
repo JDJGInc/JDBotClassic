@@ -255,7 +255,7 @@ class Bot(commands.Cog):
   async def support_invite(self, ctx):
     
     view = discord.ui.View()
-    view.add_item(discord.ui.Button(label = "Support Guild Invite", url = "https://discord.gg/Y25PGjsXt2h", style = discord.ButtonStyle.link, row = 1))
+    view.add_item(discord.ui.Button(label = "Support Guild Invite", url = "https://discord.gg/Y25PGjsXt2", style = discord.ButtonStyle.link, row = 1))
     await ctx.send("If you press the button you will be invited to our guild :D, you can also manually use https://discord.gg/Y25PGjsXt2", view = view)
 
   @commands.command(brief="This command gives you an alt bot to use",aliases=["alt_invite", "alt_bot"])
