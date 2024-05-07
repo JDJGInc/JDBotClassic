@@ -207,8 +207,8 @@ class Bot(commands.Cog):
         github_url = "https://github.com/Gorialis/jishaku"
 
       elif module.startswith("discord"):
-        github_url = "https://github.com/iDevision/enhanced-discord.py"
-        branch = "2.0.0"
+        github_url = "https://github.com/Rapptz/discord.py"
+        branch = "master"
 
       else:
         module = module.split(".")[0]
