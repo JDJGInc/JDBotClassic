@@ -1,5 +1,6 @@
 from discord.ext import commands, tasks
 import discord, random, time, asyncio, difflib, contextlib, platform, psutil, os, typing, inspect
+import pathlib
 
 import utils
 from discord.ext.commands.cooldowns import BucketType
@@ -198,8 +199,9 @@ class Bot(commands.Cog):
     
     lines, firstline = inspect.getsourcelines(src)
 
-    check_path = filename.startswith(os.getcwd())
-    filename = module.replace('.', '/') + '.py'
+    path = pathlib.Path.cwd()
+    check_path = filename.startswith(str(path))
+    filename = module.replace(".", "/") + ".py"
 
     if not check_path:
 
