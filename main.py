@@ -2,6 +2,8 @@ import os, logging, discord, re, aiohttp, traceback, asyncpg
 import B
 from discord.ext import commands
 
+from cogs import EXTENSIONS
+
 async def get_prefix(bot, message):
   extras = ["test*", "te*", "t*", "jdbot.", "jd.", "test.", "te."]
 
@@ -80,12 +82,14 @@ async def check_blacklist(ctx):
 async def check_suspended(ctx):
   return not ctx.bot.suspended or await ctx.bot.is_owner(ctx.author)
 
-for filename in os.listdir('./cogs'):
-  if filename.endswith('.py'):
-    try:
-      bot.load_extension(f'cogs.{filename[:-3]}')
-    except commands.errors.ExtensionError:
-      traceback.print_exc()
+for cog in EXTENSIONS:
+  try:
+    self.load_extension(f"{cog}")
+  except commands.errors.ExtensionError:
+    traceback.print_exc()
+
+# modify to async/await method if the bot comes back on.
+# move to setup_hook when ready.
       
 
 logging.basicConfig(level = logging.INFO)
