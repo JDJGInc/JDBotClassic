@@ -203,6 +203,9 @@ class Bot(commands.Cog):
     check_path = filename.startswith(str(path))
     filename = module.replace(".", "/") + ".py"
 
+    # I need a way to check if it is not a regular file path.
+    # because right now I cannot have it link to the source codes below.
+
     if not check_path:
 
       if module.startswith("jishaku"):
